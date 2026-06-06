@@ -1,0 +1,10 @@
+# Ignore database files and directories
+*.db
+data/db/*
+# Ignore virtual environment directories
+venv/
+env/
+# Ignore Jupyter Notebook checkpoints and Python cache files
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
