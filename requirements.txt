@@ -7,3 +7,4 @@ plotly
 sqlalchemy
 jupyter
 requests
+kaleido
