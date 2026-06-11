@@ -27,17 +27,18 @@ bluestock_mf_capstone/
 │   ├── processed/          # Cleaned CSVs
 │   └── db/                 # SQLite relational database
 │
-├── notebooks/              # Jupyter Notebooks for ETL, EDA, and Modeling         
+├── notebooks/              # Jupyter Notebooks for ETL, EDA, and Modeling
 │   ├── 01_data_ingestion.ipynb
 │   ├── 02_schema_design.ipynb
 │   ├── 03_eda_visualizations.ipynb
 │   ├── 04_feature_engineering.ipynb
-│   ├── 05_advanced_analytics.ipynb
-│   └── scripts/                
-│       └── recommender.py
+│   └── 05_advanced_analytics.ipynb
 │
 ├── dashboard/              
 │   └── bluestock_dashboard.py  # Streamlit interactive UI application
+│
+├── scripts/                
+│   └── recommender.py          # Standalone Fund Recommendation Engine
 │
 ├── reports/                # Final deliverables, presentation, and exported visuals
 │   ├── Final_Report.pdf
@@ -46,13 +47,15 @@ bluestock_mf_capstone/
 │
 ├── requirements.txt        # Python dependencies
 ├── run_pipeline.py         # Master CLI execution script
-└── README.md
+└── README.md               # Project documentation
 ```
 
 ## 🏗️ Database Architecture
 The data model utilizes a Star Schema design for optimized analytical querying:
 * **Dimension Tables:** `dim_fund` (Fund Metadata), `dim_date` (Calendar tracking).
 * **Fact Tables:** `fact_nav` (Daily Pricing), `fact_transactions` (Investor SIPs/Lumpsums), `fact_performance` (Long-term metrics), `fact_aum` (Assets Under Management).
+
+> ⚠️ **Note on Version Control:** *The `bluestock_mf.db` file has been included in this repository strictly as a static, read-only seed file to enable the ephemeral deployment on Streamlit Community Cloud. In a true production environment, this database would be hosted on a dedicated cloud RDBMS (e.g., AWS RDS or PostgreSQL) and excluded from version control.*
 
 ## 🚀 Setup & Installation
 
@@ -76,19 +79,23 @@ pip install -r requirements.txt
 
 ## ⚙️ Usage
 
-**Option 1: Use the Master Pipeline (CLI Menu)**
-Run the master script to easily access the dashboard or recommender engine:
+**Option 1: View the Live Deployment**
+Access the fully deployed application immediately without local configuration at:
+[https://bluestock-capstone-project-sa.streamlit.app/](https://bluestock-capstone-project-sa.streamlit.app/)
+
+**Option 2: Use the Master Pipeline (CLI Menu)**
+Run the master script to easily access the dashboard or recommender engine locally:
 ```bash
 python run_pipeline.py
 ```
 
-**Option 2: Launch the Dashboard Manually**
+**Option 3: Launch the Dashboard Manually**
 Spin up the interactive Streamlit server locally:
 ```bash
 streamlit run dashboard/bluestock_dashboard.py
 ```
 
-**Option 3: Run the Recommender Engine Manually**
+**Option 4: Run the Recommender Engine Manually**
 Execute the recommender script via the command line by passing a risk profile (`Low`, `Moderate`, or `High`):
 ```bash
 python scripts/recommender.py High
